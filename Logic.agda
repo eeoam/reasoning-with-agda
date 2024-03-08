@@ -16,6 +16,10 @@ sym refl = refl
 trans : {A : Set} {x y z : A} → x ≈ y → y ≈ z → x ≈ z
 trans refl q = q
 
+-- Congruence
+cong : {A B : Set} (f : A → B) → {x y : A} → x ≈ y → f x ≈ f y
+cong f refl = refl
+
 -- Load       C-c C-l
 -- Case split C-c C-c
 -- Fill hole  C-c C-space
