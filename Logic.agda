@@ -20,6 +20,11 @@ trans refl q = q
 cong : {A B : Set} (f : A → B) → {x y : A} → x ≈ y → f x ≈ f y
 cong f refl = refl
 
+cong₂ : 
+    {A B C : Set} (f : A → B → C) {u x : A} {v y : B} →
+    u ≈ x → v ≈ y → f u v ≈ f x y
+cong₂ f refl refl = refl 
+
 -- Load       C-c C-l
 -- Case split C-c C-c
 -- Fill hole  C-c C-space
