@@ -25,6 +25,17 @@ cong₂ :
     u ≈ x → v ≈ y → f u v ≈ f x y
 cong₂ f refl refl = refl 
 
+cong-app : {A B : Set} {f g : A → B} → f ≈ g → (x : A) → f x ≈ g x
+cong-app refl x = refl
+
+subst : {A : Set} {x y : A} (P : A → Set) → x ≈ y → P x → P y
+subst P refl Px = Px
+
+module ≈-Reasoning {A : Set} where
+
+    infix 1 begin_
+
+
 -- Load       C-c C-l
 -- Case split C-c C-c
 -- Fill hole  C-c C-space
