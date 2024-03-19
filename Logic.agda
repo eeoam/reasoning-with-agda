@@ -34,6 +34,31 @@ subst P refl Px = Px
 module ≈-Reasoning {A : Set} where
 
     infix 1 begin_
+    infixr 2 _≈⟨⟩_ _≈⟨_⟩_
+    infix 3 _∎
+
+    begin_ : {x y : A} → x ≈ y → x ≈ y
+    begin p = p
+
+    _≈⟨⟩_ : (x : A) {y : A} → x ≈ y → x ≈ y
+    x ≈⟨⟩ p = p
+
+    _≈⟨_⟩_ : (x : A) {y z : A} → x ≈ y → y ≈ z → x ≈ z
+    _≈⟨_⟩_ x p q = trans p q
+
+    _∎ : (x : A) → x ≈ x
+    x ∎ = refl
+
+open ≈-Reasoning
+
+trans' : {A : Set} {x y z : A} → x ≈ y → y ≈ z → x ≈ z
+trans' {A} {x} {y} {z} x≈y y≈z =
+    begin
+    x
+    ≈⟨ x≈y ⟩
+    y
+    ≈⟨ y≈z ⟩
+    z ∎
 
 
 -- Load       C-c C-l
