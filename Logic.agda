@@ -60,9 +60,36 @@ trans' {A} {x} {y} {z} x≈y y≈z =
     ≈⟨ y≈z ⟩
     z ∎
 
+data Bool : Set where
+    true : Bool
+    false : Bool
+
+infix 5 _≡_
+_≡_ : Bool → Bool → Bool
+true ≡ b = b
+false ≡ true = false
+false ≡ false = true 
+
+≡-sym : {a b : Bool} → (a ≡ b) ≡ (b ≡ a) ≈ true
+≡-sym {true} {true} = refl
+≡-sym {true} {false} = refl
+≡-sym {false} {true} = refl
+≡-sym {false} {false} = refl
+
+≡-assoc : {a b c : Bool} → (a ≡ (b ≡ c)) ≡ ((a ≡ b) ≡ c) ≈ true
+≡-assoc {true} {true} {true} = refl
+≡-assoc {true} {true} {false} = refl
+≡-assoc {true} {false} {true} = refl
+≡-assoc {true} {false} {false} = refl
+≡-assoc {false} {true} {true} = refl
+≡-assoc {false} {true} {false} = refl
+≡-assoc {false} {false} {true} = refl
+≡-assoc {false} {false} {false} = refl
+
+
 
 -- Load       C-c C-l
 -- Case split C-c C-c
 -- Fill hole  C-c C-space
--- Refine C-c C-r
+-- Refine C-c C-r    
 -- Agda guess C-c C-a
