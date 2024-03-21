@@ -86,6 +86,16 @@ false ≡ false = true
 ≡-assoc {false} {false} {true} = refl
 ≡-assoc {false} {false} {false} = refl
 
+infix 6 _∨_
+_∨_ : Bool → Bool → Bool
+true ∨ b = true
+false ∨ b = b
+
+∨-sym : {a b : Bool} → a ∨ b ≡ b ∨ a ≈ true
+∨-sym {true} {true} = refl
+∨-sym {true} {false} = refl
+∨-sym {false} {true} = refl
+∨-sym {false} {false} = refl
 
 
 -- Load       C-c C-l
