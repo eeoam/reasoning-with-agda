@@ -91,12 +91,39 @@ _∨_ : Bool → Bool → Bool
 true ∨ b = true
 false ∨ b = b
 
+∨-idem : {a : Bool} → a ∨ a ≡ a ≈ true
+∨-idem {true} = refl
+∨-idem {false} = refl
+
+∨-unitr : {a : Bool} → a ∨ false ≈ a
+∨-unitr {true} = refl
+∨-unitr {false} = refl
+
 ∨-sym : {a b : Bool} → a ∨ b ≡ b ∨ a ≈ true
 ∨-sym {true} {true} = refl
 ∨-sym {true} {false} = refl
 ∨-sym {false} {true} = refl
 ∨-sym {false} {false} = refl
 
+∨-assoc : {a b c : Bool} → a ∨ (b ∨ c) ≡ (a ∨ b) ∨ c ≈ true
+∨-assoc {true} {true} {true} = refl
+∨-assoc {true} {true} {false} = refl
+∨-assoc {true} {false} {true} = refl
+∨-assoc {true} {false} {false} = refl
+∨-assoc {false} {true} {true} = refl
+∨-assoc {false} {true} {false} = refl
+∨-assoc {false} {false} {true} = refl
+∨-assoc {false} {false} {false} = refl
+
+∨-over-≡ : {a b c : Bool} → a ∨ (b ≡ c) ≡ (a ∨ b ≡ a ∨ c) ≈ true
+∨-over-≡ {true} {true} {true} = refl
+∨-over-≡ {true} {true} {false} = refl
+∨-over-≡ {true} {false} {true} = refl
+∨-over-≡ {true} {false} {false} = refl
+∨-over-≡ {false} {true} {true} = refl
+∨-over-≡ {false} {true} {false} = refl
+∨-over-≡ {false} {false} {true} = refl
+∨-over-≡ {false} {false} {false} = refl
 
 -- Load       C-c C-l
 -- Case split C-c C-c
