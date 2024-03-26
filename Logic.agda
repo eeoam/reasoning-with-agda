@@ -125,6 +125,15 @@ false ∨ b = b
 ∨-over-≡ {false} {false} {true} = refl
 ∨-over-≡ {false} {false} {false} = refl
 
+rule1a : (f : Bool → Bool) → {a b : Bool} → f a ≈ true → a ≡ b ≈ true → f b ≈ true
+rule1a f {a} {b} fa a≡b = 
+    begin
+    f b
+    ≈⟨ {!   !} ⟩
+    f a
+    ≈⟨ fa ⟩
+    true ∎
+
 -- Load       C-c C-l
 -- Case split C-c C-c
 -- Fill hole  C-c C-space
