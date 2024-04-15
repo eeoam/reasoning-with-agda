@@ -135,24 +135,13 @@ to≈ {true} {false} = λ ()
 to≈ {false} {true} = λ z → z
 to≈ {false} {false} = λ _ → refl
 
-rule1a : (f : Bool → Bool) → {a b : Bool} → f a ≈ true → a ≡ b ≈ true → f b ≈ true
-rule1a f {a} {b} fa a≡b = 
+≡-refl : {a : Bool} → a ≡ a ≈ true
+≡-refl {a} = 
     begin
-    f b
-    ≈⟨ cong f (sym (to≈ a≡b)) ⟩
-    f a
-    ≈⟨ fa ⟩
-    true ∎
-
-
-
-rule1b : (f : Bool → Bool) → {a b : Bool} → f b ≈ true → a ≡ b ≈ true → f a ≈ true
-rule1b f {a} {b} fb a≡b =
-    begin
-    f a
-    ≈⟨ cong f (to≈ a≡b) ⟩
-    f b
-    ≈⟨ fb ⟩
+    a ≡ a
+    ≈⟨ cong (_≡ a) (sym (to≈ {a ∨ false} {a} (∨-unitr {a}))) ⟩ 
+    a ∨ false ≡ a
+    ≈⟨ ∨-unitr {a} ⟩
     true ∎
 
 
