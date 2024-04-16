@@ -144,7 +144,13 @@ to≈ {false} {false} = λ _ → refl
     ≈⟨ ∨-unitr {a} ⟩
     true ∎
 
+¬_ : Bool → Bool
+¬ true = false
+¬ false = true
 
+¬-≡ : {a : Bool} → ¬ a ≈ a ≡ false
+¬-≡ {true} = refl
+¬-≡ {false} = refl
 
 -- Load       C-c C-l
 -- Case split C-c C-c
