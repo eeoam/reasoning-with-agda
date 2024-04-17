@@ -152,6 +152,21 @@ to≈ {false} {false} = λ _ → refl
 ¬-≡ {true} = refl
 ¬-≡ {false} = refl
 
+true≈¬false :  true ≈ ¬ false
+true≈¬false = refl
+
+¬false≈false≡false : ¬ false ≈ false ≡ false
+¬false≈false≡false = refl
+
+true∎ : true ≈ true
+true∎ =
+    begin
+    true
+    ≈⟨ sym (≡-refl {true}) ⟩
+    true ≡ true
+    ≈⟨ ≡-refl {true} ⟩
+    true ∎
+
 -- Load       C-c C-l
 -- Case split C-c C-c
 -- Fill hole  C-c C-space
