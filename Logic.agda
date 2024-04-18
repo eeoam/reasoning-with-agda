@@ -158,6 +158,10 @@ true≈¬false = refl
 ¬false≈false≡false : ¬ false ≈ false ≡ false
 ¬false≈false≡false = refl
 
+¬¬a≈a : {a : Bool} → ¬ ¬ a ≈ a -- not in vlad
+¬¬a≈a {true} = refl
+¬¬a≈a {false} = refl
+
 true∎ : true ≈ true
 true∎ =
     begin
@@ -166,6 +170,31 @@ true∎ =
     true ≡ true
     ≈⟨ ≡-refl {true} ⟩
     true ∎
+
+-- not in vlad
+a≡true≈a : {a : Bool} → a ≡ true ≈ a
+a≡true≈a {true} = refl
+a≡true≈a {false} = refl
+
+a≡true≡a : {a : Bool} →  (a ≡ true) ≡ a ≈ true
+a≡true≡a {a} =
+    begin
+    (a ≡ true) ≡ a
+    ≈⟨ cong (_≡ a) a≡true≈a ⟩ 
+    a ≡ a
+    ≈⟨ ≡-refl {a} ⟩
+    true ∎
+    
+¬¬a≡a : {a : Bool} → ¬ ¬ a ≡ a ≈ true
+¬¬a≡a {a} =
+    begin
+    ¬ ¬ a ≡ a
+    ≈⟨ cong (_≡ a) ¬¬a≈a ⟩
+    a ≡ a
+    ≈⟨ ≡-refl {a} ⟩
+    true ∎
+    
+-- (a ≡ a) ≡ true
 
 -- Load       C-c C-l
 -- Case split C-c C-c
